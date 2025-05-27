@@ -117,8 +117,5 @@ This project successfully implemented:
 
 The firewall ensures **secure, reliable, and monitored** network access while preventing unauthorized traffic.  
 
-📂 **All configurations and screenshots** are available in the [`./Screenshots/`](./Screenshots/) directory.  
-
---- 
-
-This version is **detailed, structured, and professional** for your `README.md`. Let me know if you need any modifications! 🚀
+📂 **All screenshots** are available in the [`./Screenshots/`](./Screenshots/) directory.  
+📂 **All configurations** are available in the [`./Configs_and _project/`](./Configs_and _project/) directory.
