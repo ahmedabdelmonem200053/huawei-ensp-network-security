@@ -119,4 +119,4 @@ This project successfully implemented:
 The firewall ensures **secure, reliable, and monitored** network access while preventing unauthorized traffic.  
 
 📂 **All screenshots** are available in the [`./Screenshots/`](./Screenshots/) directory.  
-📂 **All configurations and files** are available in the [`./Configs_and _project/`](./Configs_and _project/) directory. 
+📂 **All configurations and files** are available in the [`./"Configs_and _project"/`](./Configs_and _project/) directory. 
