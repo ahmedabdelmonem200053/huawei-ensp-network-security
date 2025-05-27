@@ -90,7 +90,8 @@ The network consists of:
 📌 **Verification Steps**:  
 1. **User Creation**: ![`./Screenshots/user_management.png`](./Screenshots/user_management.png)  
 2. **Login Page (Redirect)**: ![`./Screenshots/user_login.png`](./Screenshots/user_login.png)  
-3. **Access After Login**: ![`./Screenshots/user_access_after_login.png`](./Screenshots/user_access_after_login.png)  
+3. **Access After Login**:
+ ![`./Screenshots/user_access_after_login.png`](./Screenshots/user_access_after_login.png)  
 4. **Online Users Monitoring**: ![`./Screenshots/user_is_online.png`](./Screenshots/user_is_online.png)  
 
 ---
