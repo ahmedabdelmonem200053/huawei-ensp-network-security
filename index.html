@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huawei Firewall Network Security Project</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    img { max-width: 100%; height: auto; margin-bottom: 20px; border: 1px solid #ddd; padding: 5px; }
+    h1, h2, h3 { color: #2c3e50; }
+    ul { margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 10px; text-align: left; }
+    hr { margin: 40px 0; }
+  </style>
+</head>
+<body>
+
+<h1>Huawei Firewall Network Security Project (ENSP)</h1>
+<p>This project implements a <strong>secure enterprise network</strong> using <strong>Huawei firewalls</strong> on <strong>ENSP</strong> (Enterprise Network Simulation Platform). The goal was to design a robust security architecture with <strong>high availability, VPN connectivity, NAT, user authentication, and access control policies</strong>.</p>
+<hr>
+
+<h2>Project Objectives</h2>
+<ul>
+  <li><strong>High Availability (Hot Standby)</strong> – Configure <strong>active/standby firewalls</strong> for failover.</li>
+  <li><strong>Zone-Based Security</strong> – Define <strong>Trust, DMZ, and Untrust zones</strong> with controlled access.</li>
+  <li><strong>IPSec VPN (Site-to-Site)</strong> – Securely connect the <strong>main office (Trust)</strong> and a <strong>remote branch</strong>.</li>
+  <li><strong>NAT (Network Address Translation)</strong>
+    <ul>
+      <li><strong>Source NAT</strong>: Allow internal users (Trust) to access the internet (Untrust).</li>
+      <li><strong>NAT Server</strong>: Permit external users (Untrust) to access the <strong>FTP server in DMZ</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>User Authentication</strong> – Restrict web access to authenticated employees.</li>
+  <li><strong>Security Policies</strong> – Enforce strict traffic filtering between zones.</li>
+</ul>
+<hr>
+
+<h2>Network Topology</h2>
+<p>The network consists of:</p>
+<h3>1. Trust Zone (Internal Network)</h3>
+<ul>
+  <li>Contains employee workstations (<code>10.1.1.0/24</code>).</li>
+  <li>Connected to <strong>FW1 (Active)</strong> and <strong>FW2 (Standby)</strong>.</li>
+</ul>
+
+<h3>2. DMZ Zone (Servers)</h3>
+<ul>
+  <li>Hosts an <strong>FTP server</strong> with a <strong>public IP</strong> for external access.</li>
+  <li>Only <strong>FTP traffic</strong> is allowed from the <strong>Untrust zone</strong>.</li>
+</ul>
+
+<h3>3. Untrust Zone (Internet)</h3>
+<ul>
+  <li>Simulates the public internet.</li>
+  <li>External users can access the <strong>DMZ FTP server</strong> but nothing else.</li>
+</ul>
+
+<h3>4. Another Branch (Remote Site)</h3>
+<ul>
+  <li>Connected via <strong>IPSec VPN</strong> (<code>10.1.4.0/24</code>).</li>
+  <li>Uses <strong>FW3</strong> as its firewall.</li>
+</ul>
+
+<h3>5. Cloud Devices (Management & Testing)</h3>
+<ul>
+  <li><strong>Cloud1-3</strong>: Used for <strong>web-based firewall configuration</strong>.</li>
+  <li><strong>Cloud5</strong>: Acts as a <strong>Trust Zone device</strong> for testing.</li>
+</ul>
+
+<h4>📌 Topology Diagram:</h4>
+<img src="./Screenshots/topology.png" alt="Topology Diagram">
+<hr>
+
+<h2>Implementation Details</h2>
+
+<h3>1. High Availability (Hot Standby - VRRP)</h3>
+<ul>
+  <li><strong>FW1</strong> is the <strong>active</strong> firewall.</li>
+  <li><strong>FW2</strong> is the <strong>standby</strong> (takes over if FW1 fails).</li>
+  <li><strong>VRRP</strong> ensures automatic failover.</li>
+</ul>
+<img src="./Screenshots/active_firewall.png" alt="Active Firewall">
+<img src="./Screenshots/standby_firewall.png" alt="Standby Firewall">
+<hr>
+
+<h3>2. IPSec VPN (Site-to-Site)</h3>
+<ul>
+  <li>Connects <code>10.1.1.0/24</code> ↔ <code>10.1.4.0/24</code>.</li>
+  <li>Uses <strong>IKE & ESP</strong> for encryption.</li>
+  <li><strong>Static routes</strong> ensure VPN traffic flows correctly.</li>
+</ul>
+<img src="./Screenshots/ipsec.png" alt="IPSec Configuration">
+<img src="./Screenshots/ipsec_monitor.png" alt="VPN Monitor">
+<img src="./Screenshots/vpn_traffic.png" alt="VPN Traffic Test">
+<hr>
+
+<h3>3. NAT (Network Address Translation)</h3>
+<h4>A. Source NAT (Trust → Untrust)</h4>
+<ul>
+  <li>Allows internal users (<code>10.1.1.0/24</code>) to access the internet.</li>
+  <li>Translates private IPs to a <strong>public IP pool</strong>.</li>
+</ul>
+
+<h4>B. NAT Server (Untrust → DMZ)</h4>
+<ul>
+  <li>Maps a <strong>public IP</strong> to the <strong>DMZ FTP server</strong>.</li>
+  <li>Only <strong>FTP traffic</strong> is permitted.</li>
+</ul>
+<img src="./Screenshots/untrust_access_server.png" alt="Untrust Access to Server">
+<img src="./Screenshots/nat_policies.png" alt="NAT Policies">
+<hr>
+
+<h3>4. User Management (Web Authentication)</h3>
+<ul>
+  <li>Employees must <strong>authenticate</strong> before accessing external HTTP services.</li>
+  <li>A user group (<strong>"employee"</strong>) was created.</li>
+  <li><strong>User01</strong> was added for testing.</li>
+</ul>
+<img src="./Screenshots/user_management.png" alt="User Management">
+<img src="./Screenshots/user_login.png" alt="User Login">
+<img src="./Screenshots/user_access_after_login.png" alt="Access After Login">
+<img src="./Screenshots/user_is_online.png" alt="User Is Online">
+<hr>
+
+<h3>5. Security Policies (Traffic Filtering)</h3>
+<table>
+  <tr>
+    <th>Policy</th>
+    <th>Source Zone</th>
+    <th>Destination Zone</th>
+    <th>Service</th>
+    <th>Action</th>
+    <th>Purpose</th>
+  </tr>
+  <tr><td>1-4</td><td>Trust</td><td>Branch (VPN)</td><td>IPSec</td><td>Allow</td><td>VPN Traffic</td></tr>
+  <tr><td>5</td><td>Trust</td><td>Untrust</td><td>HTTP</td><td>Allow (Auth)</td><td>Employee Web Access</td></tr>
+  <tr><td>6</td><td>Untrust</td><td>DMZ</td><td>FTP</td><td>Allow</td><td>External FTP Access</td></tr>
+  <tr><td>7</td><td>Any</td><td>Firewall</td><td>Auth</td><td>Allow</td><td>User Authentication</td></tr>
+</table>
+<img src="./Screenshots/policies_in_firewall_1.png" alt="Firewall Policies">
+<hr>
+
+<h2>Conclusion</h2>
+<p>This project successfully implemented:</p>
+<ul>
+  <li>✅ <strong>High Availability (Active/Standby Firewalls)</strong></li>
+  <li>✅ <strong>Secure VPN Connectivity (IPSec)</strong></li>
+  <li>✅ <strong>Controlled NAT (Internal & External Access)</strong></li>
+  <li>✅ <strong>User Authentication (Web Access Control)</strong></li>
+  <li>✅ <strong>Strict Security Policies (Zone-Based Filtering)</strong></li>
+</ul>
+<p>The firewall ensures <strong>secure, reliable, and monitored</strong> network access while preventing unauthorized traffic.</p>
+<p>📂 All configurations and screenshots are available in the <code>./Screenshots/</code> directory.</p>
+
+</body>
+</html>
