@@ -62,7 +62,7 @@ The network consists of:
 - **Static routes** ensure VPN traffic flows correctly.  
 
 📌 **Verification**:  
-- IPSec Configuration: [`./Screenshots/ipsec.png`](./Screenshots/ipsec.png)  
+- IPSec Configuration: ![`./Screenshots/ipsec.png`](./Screenshots/ipsec.png)  
 - Successful VPN Negotiation: [`./Screenshots/ipsec_monitor.png`](./Screenshots/ipsec_monitor.png)  
 - Traffic Test (Ping from Trust → Branch): [`./Screenshots/vpn_traffic.png`](./Screenshots/vpn_traffic.png)  
 
