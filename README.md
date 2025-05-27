@@ -39,7 +39,7 @@ The network consists of:
 - **Cloud1-3**: Used for **web-based firewall configuration**.  
 - **Cloud5**: Acts as a **Trust Zone device** for testing.  
 
-📌 **Topology Diagram**: [`./Screenshots/topology.png`](./Screenshots/topology.png)  
+📌 **Topology Diagram**: ![`./Screenshots/topology.png`](./Screenshots/topology.png)  
 
 ---
 
@@ -51,8 +51,8 @@ The network consists of:
 - **VRRP** ensures automatic failover.  
 
 📌 **Configurations & Status**:  
-- Active Firewall (FW1): [`./Screenshots/active_firewall.png`](./Screenshots/active_firewall.png)  
-- Standby Firewall (FW2): [`./Screenshots/standby_firewall.png`](./Screenshots/standby_firewall.png)  
+- Active Firewall (FW1): ![`./Screenshots/active_firewall.png`](./Screenshots/active_firewall.png)  
+- Standby Firewall (FW2): ![`./Screenshots/standby_firewall.png`](./Screenshots/standby_firewall.png)  
 
 ---
 
@@ -63,8 +63,8 @@ The network consists of:
 
 📌 **Verification**:  
 - IPSec Configuration: ![`./Screenshots/ipsec.png`](./Screenshots/ipsec.png)  
-- Successful VPN Negotiation: [`./Screenshots/ipsec_monitor.png`](./Screenshots/ipsec_monitor.png)  
-- Traffic Test (Ping from Trust → Branch): [`./Screenshots/vpn_traffic.png`](./Screenshots/vpn_traffic.png)  
+- Successful VPN Negotiation: ![`./Screenshots/ipsec_monitor.png`](./Screenshots/ipsec_monitor.png)  
+- Traffic Test (Ping from Trust → Branch): ![`./Screenshots/vpn_traffic.png`](./Screenshots/vpn_traffic.png)  
 
 ---
 
@@ -76,9 +76,9 @@ The network consists of:
 #### **B. NAT Server (Untrust → DMZ)**  
 - Maps a **public IP** to the **DMZ FTP server**.  
 - Only **FTP traffic** is permitted.  
- [`./Screenshots/untrust_access_server.png`](./Screenshots/untrust_access_server.png)
+ ![`./Screenshots/untrust_access_server.png`](./Screenshots/untrust_access_server.png)
 
-📌 **NAT Policies**: [`./Screenshots/nat_policies.png`](./Screenshots/nat_policies.png)  
+📌 **NAT Policies**: ![`./Screenshots/nat_policies.png`](./Screenshots/nat_policies.png)  
 
 ---
 
@@ -88,10 +88,10 @@ The network consists of:
 - **User01** was added for testing.  
 
 📌 **Verification Steps**:  
-1. **User Creation**: [`./Screenshots/user_management.png`](./Screenshots/user_management.png)  
-2. **Login Page (Redirect)**: [`./Screenshots/user_login.png`](./Screenshots/user_login.png)  
-3. **Access After Login**: [`./Screenshots/user_access_after_login.png`](./Screenshots/user_access_after_login.png)  
-4. **Online Users Monitoring**: [`./Screenshots/user_is_online.png`](./Screenshots/user_is_online.png)  
+1. **User Creation**: ![`./Screenshots/user_management.png`](./Screenshots/user_management.png)  
+2. **Login Page (Redirect)**: ![`./Screenshots/user_login.png`](./Screenshots/user_login.png)  
+3. **Access After Login**: ![`./Screenshots/user_access_after_login.png`](./Screenshots/user_access_after_login.png)  
+4. **Online Users Monitoring**: ![`./Screenshots/user_is_online.png`](./Screenshots/user_is_online.png)  
 
 ---
 
@@ -103,7 +103,7 @@ The network consists of:
 | 6      | Untrust     | DMZ              | FTP     | Allow  | External FTP Access |
 | 7      | Any         | Firewall         | Auth    | Allow  | User Authentication |
 
-📌 **Full Policy List**: [`./Screenshots/policies_in_firewall_1.png`](./Screenshots/policies_in_firewall_1.png)  
+📌 **Full Policy List**: ![`./Screenshots/policies_in_firewall_1.png`](./Screenshots/policies_in_firewall_1.png)  
 
 ---
 
